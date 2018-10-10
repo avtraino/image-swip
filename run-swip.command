@@ -4,4 +4,4 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 cd $DIR
 pipenv install
-pipenv run python3 swip.py
+pipenv run python3 image-swip.py
