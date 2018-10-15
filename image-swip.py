@@ -1,4 +1,4 @@
-import os, shutil
+import os, shutil, re
 from datetime import datetime
 import exifread
 
@@ -42,6 +42,7 @@ def get_stamp(photo):
 def process(title):
     inc_event = inbox + title + '/'
     archive_event = archive + title + '/'
+    title = re.sub(r"\s+", '-', title)
 
     if not os.path.exists(archive_event):
         os.mkdir(archive_event)
