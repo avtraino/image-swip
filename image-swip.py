@@ -15,7 +15,7 @@ def protect(title):
     inc_event  = inbox + title + '/'
     archive_event = archive + title
     if not os.path.exists(archive_event):
-        os.mkdir(archive_event)
+        os.makedirs(archive_event)
     folders = os.listdir(inc_event)
     for d in folders:
         shutil.move(inc_event+d, archive_event)
@@ -42,10 +42,11 @@ def get_stamp(photo):
 def process(title):
     inc_event = inbox + title + '/'
     archive_event = archive + title + '/'
+    problem_event = problem + title + '/'
     title = re.sub(r"\s+", '-', title)
 
     if not os.path.exists(archive_event):
-        os.mkdir(archive_event)
+        os.makedirs(archive_event)
 
     for root, subdir, files in os.walk(archive_event):
         for photo in files:
@@ -69,16 +70,21 @@ def process(title):
 
                     
                 except Exception as e:
-                    if not os.path.exists(problem):
-                        os.mkdir(problem)
-                    shutil.move(oldfile, problem)
+                    if not os.path.exists(problem_event):
+                        os.makedirs(problem_event)
+                    shutil.move(oldfile, problem_event)
                     print("Error: " + str(photo))
                     print("  ^--Exception: " + str(e))
             # if file is not a jpeg
             else:
-                if not os.path.exists(problem):
-                    os.mkdir(problem)
-                shutil.move(os.path.join(root,photo) , os.path.join(problem, photo))
+                if photo.lower().endswith('.ds_store'):
+                    pass
+                else:
+                    if not os.path.exists(problem_event):
+                        os.makedirs(problem_event)
+                    shutil.move(os.path.join(root,photo) , os.path.join(problem_event, photo))
+                    print("Error: " + str(photo))
+                    print("  ^--File is not a JPEG")
 
 
     rmdirs(inc_event)
@@ -88,7 +94,7 @@ def main():
     folders = [data_path, inbox, archive]
     for folder in folders:
         if not os.path.exists(folder):
-            os.mkdir(folder)
+            os.makedirs(folder)
 
     incoming = os.listdir(inbox)
     for event in incoming:
@@ -103,7 +109,7 @@ def debug():
     folders = [data_path, inbox, archive]
     for folder in folders:
         if not os.path.exists(folder):
-            os.mkdir(folder)
+            os.makedirs(folder)
 
     incoming = os.listdir(inbox)
     for event in incoming:
