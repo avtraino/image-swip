@@ -31,7 +31,7 @@ image-swip/
 ```
 
 #### Workflow
-* Put images in `/Inbox/`
+* Put event folders containing images in `/Inbox/`
 * run `pipenv run python3 image-swip.py`
 
     
