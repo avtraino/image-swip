@@ -1,11 +1,10 @@
-# image-swip
-A sensible image renamer.   
+# image-swip   
 
 - Sorts and renames photos by date and event (e.g., `2018-12-17_11.20.14__Hiking-Trip.jpg`)
-- Relies on DateTimeOriginal EXIF tag
+- - Date relies on DateTimeOriginal EXIF tag
+- - Event relies on the name of the parent folder
 
-
-## Get Started:
+## Get Started
 ### Requirements:
 * Python 3.6.1 or later
 * Pipenv
@@ -32,6 +31,7 @@ image-swip/
 
 #### Workflow
 * Put event folders containing images in `/Inbox/`
+    - Note: by design, image files placed directly in `/Inbox/` (without a parent folder) are not processed
 * run `pipenv run python3 image-swip.py`
 
     
