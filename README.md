@@ -25,6 +25,9 @@ Folder structure:
 image-swip/
 └───Data/
 │   └───Inbox/
+    │   └───Event1/
+    │   └───Event2/
+    │   └───Event3/
 │   └───Archive/
 │   └───Problems/
 ```
